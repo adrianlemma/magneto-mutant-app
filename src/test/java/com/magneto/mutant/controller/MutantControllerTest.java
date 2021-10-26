@@ -29,7 +29,6 @@ class MutantControllerTest {
 	
 	@Test
 	void testGetMetrics() {
-		//Metrics metricsOK = new Metrics(5,10);
 		when(service.countMutants()).thenReturn(5);
 		when(service.countHumans()).thenReturn(10);
 		Metrics metricsMock = mutantController.getMetrics();

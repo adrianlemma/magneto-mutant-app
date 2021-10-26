@@ -3,6 +3,7 @@ package com.magneto.mutant.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import com.magneto.mutant.models.Metrics;
 import com.magneto.mutant.repository.impl.RepositoryServiceImpl;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/")
 public class MutantController {
 	
@@ -25,12 +27,14 @@ public class MutantController {
 	public MutantController(RepositoryServiceImpl service2) {
 		this.service = service2;
 	}
-
+	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/stats")
 	public Metrics getMetrics() {
 		return new Metrics(service.countMutants(), service.countHumans());
 	}
 	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/mutant")
 	public ResponseEntity<String> mutant(@RequestBody Dna dna) {
 		
